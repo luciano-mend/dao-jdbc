@@ -1,6 +1,8 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -11,9 +13,7 @@ public class Program {
 
 	public static void main(String[] args) {
 
-//		Department obj = new Department(1, "Books");
-//		
-//		Seller seller = new Seller(29, "Maria", "email@email.com", new Date(), 2500.0, obj);
+		Scanner sc = new Scanner(System.in);
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		System.out.println("=== TEST1: seller findById ===");
@@ -33,6 +33,24 @@ public class Program {
 			System.out.println(obj);
 		}
 		
+		System.out.println("\n=== TEST4: seller insert ===");
+		Seller novoSeller = new Seller(null, "Jose", "email2@email.com", new Date(), 4000.0, department);
+		sellerDao.insert(novoSeller);
+		System.out.println("Inserido! Novo id: " + novoSeller.getId());
+		
+		System.out.println("\n=== TEST5: seller update ===");
+		seller = sellerDao.findById(1);
+		seller.setName("Joana D'Arc");
+		sellerDao.update(seller);
+		System.out.println("Update comcluído!");
+		
+		System.out.println("\n=== TEST6: seller delete ===");
+		System.out.println("Digite um código para exclusão: ");
+		int id = sc.nextInt();
+		sellerDao.delete(id);
+		System.out.println("Excluído com sucesso!");
+		
+		sc.close();
 	}
 
 }
