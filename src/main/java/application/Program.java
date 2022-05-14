@@ -42,7 +42,7 @@ public class Program {
 		seller = sellerDao.findById(1);
 		seller.setName("Joana D'Arc");
 		sellerDao.update(seller);
-		System.out.println("Update comcluído!");
+		System.out.println("Update concluído!");
 		
 		System.out.println("\n=== TEST6: seller delete ===");
 		System.out.println("Digite um código para exclusão: ");
